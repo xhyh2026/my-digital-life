@@ -12,8 +12,6 @@ public class DigitalEntity extends MobEntity {
 
     public DigitalEntity(EntityType<? extends MobEntity> entityType, World world) {
         super(entityType, world);
-        this.goalSelector.clear(); 
-        this.targetSelector.clear();
     }
 
     @Override
@@ -37,9 +35,9 @@ public class DigitalEntity extends MobEntity {
             if (in != null && in.ready()) {
                 String action = in.readLine();
                 if ("FORWARD".equals(action)) {
-                    this.setForwardSpeed(1.0f); 
+                    this.setVelocity(this.getVelocity().add(this.getRotationVector().multiply(0.1)));
                 } else if ("STOP".equals(action)) {
-                    this.setForwardSpeed(0.0f);
+                    this.setVelocity(0, this.getVelocity().y, 0);
                 }
             }
         } catch (Exception e) {}
