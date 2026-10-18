@@ -1,30 +1,25 @@
 package com.example;
 
 import net.fabricmc.api.ModInitializer;
-
-import net.minecraft.resources.Identifier;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnGroup;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.util.Identifier;
 
 public class ExampleMod implements ModInitializer {
-	public static final String MOD_ID = "modid";
+    
+    // 注册我们的数字生命实体
+    public static final EntityType<DigitalEntity> DIGITAL_ENTITY = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier("example", "digital_entity"),
+            EntityType.Builder.create(DigitalEntity::new, SpawnGroup.CREATURE)
+                    .dimensions(0.6f, 1.8f)
+                    .build("digital_entity")
+    );
 
-	// This logger is used to write text to the console and the log file.
-	// It is considered best practice to use your mod id as the logger's name.
-	// That way, it's clear which mod wrote info, warnings, and errors.
-	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-
-	@Override
-	public void onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
-
-		LOGGER.info("Hello Fabric world!");
-	}
-
-	public static Identifier id(String path) {
-		return Identifier.fromNamespaceAndPath(MOD_ID, path);
-	}
+    @Override
+    public void onInitialize() {
+        System.out.println("数字生命模组已加载！");
+    }
 }
