@@ -21,4 +21,4 @@ public class ExampleMod implements ModInitializer {
     public void onInitialize() {
         System.out.println("数字生命模组已加载！");
     }
-}1
+}
