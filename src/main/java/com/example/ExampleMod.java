@@ -14,7 +14,7 @@ public class ExampleMod implements ModInitializer {
             Identifier.of("example", "digital_entity"),
             EntityType.Builder.create(DigitalEntity::new, SpawnGroup.CREATURE)
                     .dimensions(0.6f, 1.8f)
-                    .build()
+                    .build() // 1.21.1 的 build 不需要参数
     );
 
     @Override
